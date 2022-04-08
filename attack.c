@@ -2,7 +2,8 @@
 #include "xoshiro256starstar.h"
 #include "node.h"
 #include <stdint.h>
-#define SIZE 167772160
+#define SIZE 167772160 
+//#define SIZE 599999999
 // #define SIZE 2
 
 void copy_tab ( uint8_t * h1 , uint8_t *h2 , int n ){

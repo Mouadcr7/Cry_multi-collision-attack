@@ -56,17 +56,17 @@ info *  search_enc ( node * n , uint8_t * h , uint8_t * message ){
   while(n){
     int b1 = 1 ;
     for ( int i = 0 ; i < 6 ; i++ ){
-      if ( *((n->h)+i) != *(h+i)  ){
+      if ( (uint8_t) (*((n->h)+i)) != (uint8_t)(*(h+i))  ){
         b1 = 0 ; // not the same encryption ==> keep searching in the next nodes
+        break ;
       }
 
-      if ( b1 == 0) break ;
     }
     if ( b1 == 1 ) {
       // same encription
       // look if this is a different message first !
       for (int i=0 ; i< 16 ; i++ ){
-        if ( *((n->message)+i) != *(message+i)  ){
+        if ( (uint8_t)(*((n->message)+i)) != (uint8_t)(*(message+i))  ){
            // same encription with different messages => collision
            inf->state = FOUND ;
            inf->message = n->message ;

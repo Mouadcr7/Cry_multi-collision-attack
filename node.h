@@ -20,7 +20,7 @@ node * creat_node(uint8_t * h , uint8_t * message );
 
 
 
-void add_node_( node * new , node *n  );
+void add_node_( node ** H , node * new , int pos  );
 
 
 

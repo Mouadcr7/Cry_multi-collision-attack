@@ -13,15 +13,24 @@ node * creat_node(uint8_t * h , uint8_t * message ){
   return new ;
 }
 
-void add_node_( node * new , node *n  ){
-  if ( n && n-> next ){
-      new->next = n->next ;
-      n->next = new ;
+void add_node_( node ** H , node * new , int pos  ){
+
+
+  if ( H[pos] ){
+    new->next = H[pos] ;
   }
-  else{
-    n->h = new->h ;
-    n->message = new->message ;
-  }
+  H[pos] = new ;
+
+  
+  // if ( n && n-> next ){
+  //     new->next = n->next ;
+  //     n->next = new ;
+  // }
+  // else{
+  //   n->h = new->h ;
+  //   n->message = new->message ;
+  // }
+
 
 }
 

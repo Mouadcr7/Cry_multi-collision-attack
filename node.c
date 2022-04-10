@@ -104,7 +104,6 @@ void search_enc ( node * n , uint8_t * h , uint8_t * message , info *  inf){
           // same encription with different messages => collision
            inf->state = ENC_FOUND ;
            inf->message = n->message ;
-           printf("COLLISIOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOON \n");
 
            return;
 

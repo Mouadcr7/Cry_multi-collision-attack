@@ -19,8 +19,8 @@ void copy_tab ( uint8_t * h1 , uint8_t *h2 , int n ){
 
 void find_col(uint8_t h[6], uint8_t m1[16], uint8_t m2[16]){
 
-  uint64_t seed[4] = {0,1,2,3} ;
-  xoshiro256starstar_random_set(seed) ;
+
+  __my_little_xoshiro256starstar_unseeded_init();
 
   //uint64_t rand = xoshiro256starstar_random() ;
 

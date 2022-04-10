@@ -9,7 +9,7 @@ typedef struct node {
   uint8_t * message ;
 } node ;
 
-enum STATE { NOT_FOUND , FOUND };
+enum STATE { ENC_NOT_FOUND , ENC_FOUND , MSG_EXIST  };
 
 typedef struct info {
   enum STATE state ;
@@ -32,7 +32,10 @@ uint8_t * first_element( node * n ) ;
 uint8_t * second_element( node * n ) ;
 
 
-info * search_enc ( node * n , uint8_t * h , uint8_t * message );
+int comparaison_tab ( uint8_t  * tab1 , uint8_t * tab2 , int size  ) ;
+
+
+void search_enc ( node * n , uint8_t * h , uint8_t * message , info *  inf);
 
 
 

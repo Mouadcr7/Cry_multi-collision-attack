@@ -13,7 +13,7 @@ enum STATE { ENC_NOT_FOUND , ENC_FOUND , MSG_EXIST  };
 
 typedef struct info {
   enum STATE state ;
-  uint8_t * message;
+  node *  result ;
 } info ;
 
 node * creat_node(uint8_t * h , uint8_t * message );
@@ -39,7 +39,7 @@ void search_enc ( node * n , uint8_t * h , uint8_t * message , info *  inf);
 
 
 
-
+void free_list( node * n );
 
 
 #endif

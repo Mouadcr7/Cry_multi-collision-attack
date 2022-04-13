@@ -36,14 +36,16 @@ uint8_t getRandom(int lower, int upper)
 int main(int argc, char const *argv[])
 {
 
-  uint8_t h1[6];
-  uint8_t h2[6] = {0X12, 0X59, 0XA2, 0XBC, 0XFF, 0X08};
-  srand(time(NULL));
-  for (size_t i = 0; i < 6; i++)
-  {
-    h1[i] =getRandom(0,256);
-    h2[i]=h1[i];
-  }
+  uint8_t h1[6] = {IVB0 ,IVB1 ,IVB2 ,IVB3 ,IVB4 ,IVB5} ;
+  uint8_t h2[6] = {IVB0 ,IVB1 ,IVB2 ,IVB3 ,IVB4 ,IVB5} ;
+
+  // srand(time(NULL));
+  // for (size_t i = 0; i < 6; i++)
+  // {
+  //   h1[i] =getRandom(0,256);
+  //   h2[i]=h1[i];
+  // }
+  
   uint8_t *m1 = malloc(16 * sizeof(uint8_t));
   uint8_t *m2 = malloc(16 * sizeof(uint8_t));
   

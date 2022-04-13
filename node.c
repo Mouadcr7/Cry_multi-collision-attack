@@ -21,17 +21,6 @@ void add_node_( node ** H , node * new , int pos  ){
   }
   H[pos] = new ;
 
-  
-  // if ( n && n-> next ){
-  //     new->next = n->next ;
-  //     n->next = new ;
-  // }
-  // else{
-  //   n->h = new->h ;
-  //   n->message = new->message ;
-  // }
-
-
 }
 
 
@@ -66,44 +55,23 @@ void search_enc ( node * n , uint8_t * h , uint8_t * message , info *  inf){
 
   while(n){
     int b1 = 1 ;
-    // for ( int i = 0 ; i < 6 ; i++ ){
-    //   if ( (uint8_t) (*((n->h)+i)) != (uint8_t)(*(h+i))  ){
-    //     b1 = 0 ; // not the same encryption ==> keep searching in the next nodes
-    //     break ;
-    //   }
 
-    // }    
     
      if ( comparaison_tab ( n->h , h , 48  )  ){
         b1 = 0 ; // not the same encryption ==> keep searching in the next nodes
       }     
     
-    // if ( *((uint32_t*)(n->h)) != *((uint32_t*)(h)) ||  *((uint16_t*)(n->h+4)) != *((uint16_t*)(h+4))  ){
-    //     b1 = 0 ; // not the same encryption ==> keep searching in the next nodes
-    // }
+
 
     if ( b1 == 1 ) {
       // same encription
       // look if this is a different message first !
 
-
-
-      // for (int i=0 ; i< 2 ; i++ ){
-      //   if ( *((uint64_t *)((n->message)+(64*i))) != *((uint64_t *)((message)+(64*i)))  ){
-      //      // same encription with different messages => collision
-      //      inf->state = ENC_FOUND ;
-      //      inf->message = n->message ;
-      //      printf("COLLISIOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOON \n");
-
-      //      return;
-      //   }
-      // }
-
      if ( comparaison_tab ( n->message, message , 128  )  ){
 
           // same encription with different messages => collision
            inf->state = ENC_FOUND ;
-           inf->message = n->message ;
+           inf->result  = n ;
 
            return;
 
@@ -118,4 +86,26 @@ void search_enc ( node * n , uint8_t * h , uint8_t * message , info *  inf){
     }
   }
   return ;
+}
+
+
+
+
+void free_list( node * n ){
+  while (n){
+    node * temp = n->next ;
+    free ( n ->h ) ;
+    free ( n->message ) ;
+    free ( n ) ;
+    n = temp ;
+  }
+}
+
+void free_hash( node ** H  , int size ) {
+  for ( int i = 0 ; i< size ; i++){
+    if (H[i]){
+      free_list(H[i]);
+    }
+  }
+  free (H);
 }

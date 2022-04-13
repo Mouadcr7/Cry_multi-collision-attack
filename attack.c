@@ -30,24 +30,17 @@ void find_col(uint8_t h[6], uint8_t m1[16], uint8_t m2[16]){
 
   node **  H = (node ** ) malloc ( SIZE  * sizeof(node * )) ;
 
-  info * inf =  ( info * )malloc ( sizeof(info)) ;
 
-  unsigned long int  * i  =    ( unsigned long int *) malloc ( sizeof (   unsigned long int )) ;;
+
+  info inf ;
+
+  unsigned long int   i ;
 
   for ( int i = 0  ; i < SIZE ; i ++ ){
     H[i] = NULL ;
   }
-  int p = 0 ;
+  //int p = 0 ;
   do {
-
-    // if( H[0] ){
-    //       printf("H[0] : encry %s   message : %s \n" ,H[0]->h,H[0]->message );
-
-    // }    
-    // if( H[1] ){
-    //       printf("H[1] : encry %s   message : %s \n",H[1]->h,H[1]->message );
-
-    // }
     uint64_t mfirst = xoshiro256starstar_random() ;
     uint64_t msecond = xoshiro256starstar_random() ;
 
@@ -60,8 +53,8 @@ void find_col(uint8_t h[6], uint8_t m1[16], uint8_t m2[16]){
 
 
  
-    memcpy(i,h_temp,6);
-    unsigned long int pos = (*i % SIZE) ;
+    memcpy(&i,h_temp,6);
+    unsigned long int pos = (i % SIZE) ;
 
     // printf("encryptage genere : %s\n",h_temp);
     // printf("message genere : %s\n",m);
@@ -69,14 +62,14 @@ void find_col(uint8_t h[6], uint8_t m1[16], uint8_t m2[16]){
     //       printf("H[%ld] : encry %s   message : %s \n",pos ,H[pos]->h,H[pos]->message );
 
     // }
-    search_enc ( H[ pos ] , h_temp , m , inf) ;
+    search_enc ( H[ pos ] , h_temp , m , &inf) ;
 
 
       // printf("%d\n",p++ );
 
 
 
-    if ( inf->state == ENC_NOT_FOUND){
+    if ( inf.state == ENC_NOT_FOUND){
       node * new = creat_node(h_temp,m );
 
       add_node_(H, new, pos  );
@@ -86,9 +79,13 @@ void find_col(uint8_t h[6], uint8_t m1[16], uint8_t m2[16]){
 
 
     }
-    else if( inf->state == ENC_FOUND ) {
+    else if( inf.state == ENC_FOUND ) {
       memcpy ( m1 ,  m , 16 );
-      memcpy ( m2 ,  inf->message , 16 ); 
+      memcpy ( m2 ,  inf.result->message , 16 ); 
+      memcpy ( h ,  inf.result->h , 6 ); 
+
+      free_hash( H  , SIZE ) ; 
+
       return  ;
     }
 
@@ -99,4 +96,11 @@ void find_col(uint8_t h[6], uint8_t m1[16], uint8_t m2[16]){
   } while(1);
 
 
+}
+
+
+
+void attack(int d) {
+
+  return ;
 }

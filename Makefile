@@ -1,15 +1,15 @@
-CFLAGS=-W -Wall -g
+CFLAGS=-g
 LDFLAGS=
 CC=gcc
 
 all : test testNode
-test: test.o attack.o mc48.o node.o
-	$(CC) -o test test.o attack.o mc48.o node.o
+test: test.o mc48.o attack.o utils.o node.o
+	$(CC) -o test test.o attack.o mc48.o utils.o node.o
 
 testNode: testNode.o node.o
 	$(CC) -o testNode testNode.o node.o
 
-attack.o: attack.c attack.h mc48.h node.h
+attack.o: attack.c attack.h mc48.h node.h utils.h
 	gcc -o attack.o -c attack.c $(CFLAGS)
 
 mc48.o: mc48.c mc48.h
@@ -17,11 +17,14 @@ mc48.o: mc48.c mc48.h
 	
 node.o: node.c node.h
 	gcc -o node.o -c node.c $(CFLAGS)
+	
+utils.o: utils.c utils.h
+	gcc -o utils.o -c utils.c $(CFLAGS)
 
 testNode.o: testNode.c node.h
 	gcc -o testNode.o -c testNode.c $(CFLAGS)
 	
-test.o: test.c attack.h
+test.o: test.c attack.h utils.h
 	gcc -o test.o -c test.c $(CFLAGS)
 
 clean:

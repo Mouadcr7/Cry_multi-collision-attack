@@ -1,7 +1,13 @@
+#include <stdint.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
 #include "attack.h"
 #include "xoshiro256starstar.h"
+#include "mc48.h"
 #include "node.h"
-#include <stdint.h>
+#include "utils.h"
 
 //#define SIZE 167772160 48 sec
 
@@ -11,11 +17,7 @@
 // #define SIZE 599999999
 // #define SIZE 2
 
-void copy_tab ( uint8_t * h1 , uint8_t *h2 , int n ){
-    for (int i = 0; i < n; i++) {
-      h2[i] = h1[i];
-    }
-}
+
 
 void find_col(uint8_t h[6], uint8_t m1[16], uint8_t m2[16]){
 
@@ -85,7 +87,6 @@ void find_col(uint8_t h[6], uint8_t m1[16], uint8_t m2[16]){
       memcpy ( h ,  inf.result->h , 6 ); 
 
       free_hash( H  , SIZE ) ; 
-
       return  ;
     }
 
@@ -101,6 +102,34 @@ void find_col(uint8_t h[6], uint8_t m1[16], uint8_t m2[16]){
 
 
 void attack(int d) {
+  uint8_t h[6] = {IVB0 ,IVB1 ,IVB2 ,IVB3 ,IVB4 ,IVB5} ;
+  uint8_t m1[16] ;
+  uint8_t m2[16] ;
 
+  //uint8_t * message1 = ( uint8_t * ) malloc ( d * 16  * sizeof(uint8_t)  );
+  //uint8_t * message2 = ( uint8_t * ) malloc ( d * 16  * sizeof(uint8_t)  );
+
+  for (int i = 0; i < d ; i++)
+  {
+    clock_t begin = clock();
+
+    find_col(h , m1, m2) ;
+    
+    clock_t end = clock();
+    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+
+    //memcpy(message1+16*i , m1 , 16) ;
+    //memcpy(message2+16*i , m2 , 16) ;
+
+    print_hexa_128(m1);
+    print_hexa_128(m2);
+    printf("%f\n", time_spent);
+  }
+  
+
+  //free(message1) ;
+  //free(message2) ;
+
+  
   return ;
 }

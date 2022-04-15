@@ -41,5 +41,7 @@ void search_enc ( node * n , uint8_t * h , uint8_t * message , info *  inf);
 
 void free_list( node * n );
 
+void free_hash( node ** H  , int size );
+
 
 #endif

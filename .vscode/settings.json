@@ -1,6 +1,10 @@
 {
     "files.associations": {
         "stdint.h": "c",
-        "xoshiro256starstar.h": "c"
+        "xoshiro256starstar.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "utility": "c"
     }
 }

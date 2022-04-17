@@ -1,10 +1,10 @@
-CFLAGS=-g
+CFLAGS=-O -lm
 LDFLAGS=
 CC=gcc
 
 all : test testNode
 test: test.o mc48.o attack.o utils.o node.o
-	$(CC) -o test test.o attack.o mc48.o utils.o node.o
+	$(CC) -o test test.o attack.o mc48.o utils.o node.o -lm
 
 testNode: testNode.o node.o
 	$(CC) -o testNode testNode.o node.o

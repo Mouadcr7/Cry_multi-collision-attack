@@ -22,4 +22,4 @@ test.o: test.c attack.h utils.h
 	gcc -o test.o -c test.c $(CFLAGS)
 
 clean:
-	rm -rf *.o testNode test
+	rm -rf *.o test

@@ -5,9 +5,9 @@
 
 /**
  * @brief SIZE is the size of the hashmap, this typical size is chosen based on the birthday attack on the compression fuction.
- * The hash is in 48 bits so, we chose a size bigger than 2^24 nodes. 
+ * The hash is in 48 bits so, we chose 2^24 to be the size of our hash-map. 
  */
-#define SIZE 1073741824
+#define SIZE 16777216 //2^24
 
 
 /*

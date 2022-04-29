@@ -14,10 +14,6 @@ void print_hexa_128(uint8_t *tab, char  * separator );
 */
 void print_hexa_48(uint8_t *tab);
 
-/*
-    * Return a random integer uint8_t between lower and upper.
-*/
-uint8_t getRandom(int lower, int upper) ;
 
 /*
     * Print a list of  2^d collisions messages followed by the encryption h.

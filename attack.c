@@ -9,16 +9,11 @@
 #include "node.h"
 #include "utils.h"
 
-//#define SIZE 167772160 48 sec
 
-//#define SIZE 167772160
-
-#define SIZE 300000000
-// #define SIZE 2
-
+ 
 void find_col(uint8_t h[6], uint8_t m1[16], uint8_t m2[16])
 {
-
+  
   __my_little_xoshiro256starstar_unseeded_init();
 
   uint8_t *h_temp = (uint8_t *)malloc(6 * sizeof(uint8_t));

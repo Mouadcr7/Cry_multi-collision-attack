@@ -24,15 +24,6 @@ void print_hexa_48(uint8_t *tab)
   }
 }
 
-uint8_t getRandom(int lower, int upper)
-{
-
-  uint8_t num = (rand() %
-                 (upper - lower + 1)) +
-                lower;
-
-  return num;
-}
 
 void print_messages(int d, uint8_t *message0, uint8_t *message1, uint8_t *h, int size)
 {

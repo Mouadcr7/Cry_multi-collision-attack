@@ -1,8 +1,14 @@
 #ifndef __ATTACK_H
 #define __ATTACK_H
 
-
 #include <stdint.h>
+
+/**
+ * @brief SIZE is the size of the hashmap, this typical size is chosen based on the birthday attack on the compression fuction.
+ * The hash is in 48 bits so, we chose a size bigger than 2^24 nodes. 
+ */
+#define SIZE 1073741824
+
 
 /*
     * searches for a collision for the compression function tcz48_ 

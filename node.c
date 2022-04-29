@@ -24,17 +24,6 @@ void add_node_( node ** H , node * new , int pos  ){
 }
 
 
-uint8_t * first_element( node * n ){
-  if ( ! n ) return NULL ;
-  return n->h ;
-}
-
-
-
-uint8_t * second_element( node * n ){
-    if ( ! n ) return NULL ;
-  return n->message ;
-}
 
 
 
@@ -68,13 +57,11 @@ void search_enc ( node * n , uint8_t * h , uint8_t * message , info *  inf){
       // look if this is a different message first !
 
      if ( comparaison_tab ( n->message, message , 128  )  ){
-
           // same encription with different messages => collision
            inf->state = ENC_FOUND ;
            inf->result  = n ;
 
            return;
-
       }     
       
       inf->state = MSG_EXIST ;
